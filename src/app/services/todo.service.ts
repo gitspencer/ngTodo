@@ -4,13 +4,16 @@ import { Product } from './../../../../ngHandsOn/src/app/models/product';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoService {
-  private baseUrl = 'http://localhost:8087/';
-  private url = this.baseUrl + 'api/todos';
+  // private baseUrl = 'http://localhost:8087/';
+  // private url = this.baseUrl + 'api/todos';
+  private url = environment.baseUrl + 'api/todos';
 
   newTodo: Todo = new Todo();
   editTodo: Todo | null = null;
@@ -21,35 +24,34 @@ export class TodoService {
   //   new Todo(3, 'Sort life out', '', false),
   // ];
 
-  constructor( 
+  constructor(
     private http: HttpClient,
-    private datePipe: DatePipe
-  ) { }
+    private datePipe: DatePipe,
+    private auth: AuthService
+  ) {}
 
   // public index(): Todo[] {
-    public index(): Observable<Todo[]> {
+  public index(): Observable<Todo[]> {
     // return [...this.todos];
-    return this.http.get<Todo[]>(this.url).pipe(
+    return this.http.get<Todo[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error('Error GETing todo list');
         return throwError(
           () =>
-            new Error(
-              "TodoService.index(): error retrieving todo list: " + err
-            )
+            new Error('TodoService.index(): error retrieving todo list: ' + err)
         );
       })
     );
   }
 
   public show(todoId: number): Observable<Todo> {
-    return this.http.get<Todo>(this.url + '/' + todoId).pipe(
+    return this.http.get<Todo>(this.url + '/' + todoId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error('Error GETing single todo');
         return throwError(
           () =>
             new Error(
-              "TodoService.index(): error retrieving single todo: " + err
+              'TodoService.index(): error retrieving single todo: ' + err
             )
         );
       })
@@ -61,26 +63,23 @@ export class TodoService {
   // }
 
   // public create(newTodo : Todo): void {
-  public create(newTodo : Todo): Observable<Todo> {
+  public create(newTodo: Todo): Observable<Todo> {
     // newTodo.id = this.generateId();
     newTodo.completed = false;
     newTodo.description = '';
     // this.todos.push(newTodo);
-    return this.http.post<Todo>(this.url, newTodo).pipe(
+    return this.http.post<Todo>(this.url, newTodo, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error('Error POSTing new todo');
         return throwError(
-          () =>
-            new Error(
-              "TodoService.create(): error creating todo: " + err
-            )
+          () => new Error('TodoService.create(): error creating todo: ' + err)
         );
       })
     );
   }
 
   // public update(todo : Todo): void {
-  public update(todo : Todo): Observable<Todo> {
+  public update(todo: Todo): Observable<Todo> {
     // for(let i = 0; i < this.todos.length; i++) {
     //   if(todo.id === this.todos[i].id) {
     //     this.todos[i].task = todo.task;
@@ -95,14 +94,11 @@ export class TodoService {
       todo.completeDate = '';
     }
 
-    return this.http.put<Todo>(this.url + '/' + todo.id, todo).pipe(
-        catchError((err: any) => {
-          console.error('Error PUTing updated todo');
-          return throwError(
-          () =>
-            new Error(
-              "TodoService.update(): error updating todo: " + err
-            )
+    return this.http.put<Todo>(this.url + '/' + todo.id, todo, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error('Error PUTing updated todo');
+        return throwError(
+          () => new Error('TodoService.update(): error updating todo: ' + err)
         );
       })
     );
@@ -115,16 +111,23 @@ export class TodoService {
     //     this.todos.splice(i, 1);
     //   }
     // }
-    return this.http.delete<void>(this.url + '/' + id).pipe(
+    return this.http.delete<void>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-          console.error('Error DELETEing todo');
-          return throwError(
-          () =>
-            new Error(
-              "TodoService.destroy(): error deleting todo: " + err
-            )
+        console.error('Error DELETEing todo');
+        return throwError(
+          () => new Error('TodoService.destroy(): error deleting todo: ' + err)
         );
       })
     );
+  }
+
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
   }
 }

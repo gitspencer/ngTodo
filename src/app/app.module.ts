@@ -1,3 +1,4 @@
+import { TodoService } from './services/todo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,10 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactComponent,
     NotFoundComponent,
     NavigationComponent,
+    RegisterComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule
   ],
-  providers: [DatePipe, IncompletePipe],
+  providers: [TodoService, DatePipe, IncompletePipe, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

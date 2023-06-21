@@ -1,4 +1,15 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+.DS_Store
+Servers
+target
+build
+bin
+default
+.metadata
+# .settings
+.gradle
+*.war
+*.bak
 
 # Compiled output
 /dist

@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit{
-  title = 'ngTodo';
+  title = 'Todo Dojo';
   todos: Todo[] = [];
   selected: Todo | null = null;
   newTodo: Todo = new Todo();
@@ -112,7 +112,7 @@ export class TodoListComponent implements OnInit{
         this.reload();
       },
       error: (updateError) => {
-        console.error('TodoListComponenet.updatedTodo(): error on update');
+        console.error('TodoListComponenet.updateTodo(): error on update');
         console.error(updateError);
 
       }
