@@ -1,32 +1,39 @@
-Create account or login with Username: user, Password: 1234.
+# NgTodo
 
 Website: [Todo Dojo](http://18.116.157.70:8080/TodoREST)
 
-# NgTodo
+Create account or login with Username: user, Password: 1234.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+## Description
 
-## Development server
+Full-stack Todo List using Spring Security and user authentication to access and modify your unique todo list.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## REST API
+| HTTP Verb | URI                  | Request Body | Response Body | Purpose |
+|-----------|----------------------|--------------|---------------|---------|
+| GET       | `/api/todos`      |              | Collection of representations of all _drink_ resources | **List** all drinks
+| GET       | `/api/todos/2`   |              | Representation of _Drink_ `2` | **Retrieve** endpoint |
+| GET       | `/api/authenticate`   |              | Representation of _Drink_ `2` | **Retrieve** endpoint |
+| POST      | `/api/todos`      | Representation of a new _Drink_ resource | Description of the result of the operation | **Create** endpoint |
+| POST      | `/api/register`      | Representation of a new _Drink_ resource | Description of the result of the operation | **Create** endpoint |
+| PUT       | `/api/todos/2`   | Representation of a new version of _Drink_ `2` | | **Replace** endpoint |
+| DELETE    | `/api/todos/2`   |              | | **Delete** route |
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Technologies Used
+- Java
+- Typescript
+- Angular
+- HTML
+- CSS
+- Spring Boot
+- Spring REST
+- Spring Data JPA
+- SpringToolSuite
+- MySQL Workbench
+- JUnit
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Lessons Learned
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# ngTodo
