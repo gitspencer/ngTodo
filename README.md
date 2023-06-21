@@ -1,3 +1,5 @@
+Create account or login with Username: user, Password: 1234.
+
 # NgTodo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
