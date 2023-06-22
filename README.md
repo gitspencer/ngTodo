@@ -11,13 +11,13 @@ Full-stack Todo List using Spring Security and user authentication to access and
 ## REST API
 | HTTP Verb | URI                  | Request Body | Response Body | Purpose |
 |-----------|----------------------|--------------|---------------|---------|
-| GET       | `/api/todos`      |              | Collection of representations of all _drink_ resources | **List** all drinks
-| GET       | `/api/todos/2`   |              | Representation of _Drink_ `2` | **Retrieve** endpoint |
-| GET       | `/api/authenticate`   |              | Representation of _Drink_ `2` | **Retrieve** endpoint |
-| POST      | `/api/todos`      | Representation of a new _Drink_ resource | Description of the result of the operation | **Create** endpoint |
-| POST      | `/api/register`      | Representation of a new _Drink_ resource | Description of the result of the operation | **Create** endpoint |
-| PUT       | `/api/todos/2`   | Representation of a new version of _Drink_ `2` | | **Replace** endpoint |
-| DELETE    | `/api/todos/2`   |              | | **Delete** route |
+| GET       | `/api/authenticate`   | Authorization: Basic base64 encode username:password | Representation of _User_ `1` | **Retrieve** endpoint |
+| GET       | `/api/todos`      | Basic Authorization | Collection of representations of all _Todo_ resources of _User_ | **List** all todos
+| GET       | `/api/todos/1`   | Basic Authorization | Representation of _Todo_ `1` | **Retrieve** endpoint |
+| POST      | `/api/todos`      | Representation of a new _Todo_ resource & Basic Authorization | Description of the result of the operation | **Create** endpoint |
+| POST      | `/api/register`      | Representation of a new _User_ resource | Description of the result of the operation | **Create** endpoint |
+| PUT       | `/api/todos/1`   | Representation of a new version of _Todo_ `1` & Basic Authorization | | **Replace** endpoint |
+| DELETE    | `/api/todos/1`   | Basic Authorization | | **Delete** route |
 
 
 
