@@ -2,7 +2,7 @@
 
 Website: [Todo Dojo](http://18.116.157.70:8080/TodoREST)
 
-Create account or login with Username: user, Password: 1234.
+Create account or login with Username: user, Password: 1234
 
 ## Description
 
